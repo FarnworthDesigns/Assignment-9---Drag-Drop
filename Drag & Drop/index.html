@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Drag &amp; Drop</title>
+<!-- Bring in the jQuery UI stylesheet and place it BEFORE your stylesheet-->
+<link href="css/jquery-ui.min.css" rel="stylesheet">
+<link href="//code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css" rel="stylesheet">
+<link href="css/styles.css" rel="stylesheet">
+<!-- Bring in some Google fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300&family=Roboto:wght@300&display=swap" rel="stylesheet">
+<!-- Bring in the jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<!-- Bring in the jQuery UI plugin and place it AFTER the jQuery  library -->
+<script src="js/jquery-ui.min.js"></script>
+<!-- Your beautiful jQuery code goes below -->
+<script>
+$(document).ready(function() {
+  $("#photos img").draggable({
+	  revert: "invalid",
+	  start: function(event, ui){
+		  ui.helper.css("transform", "rotate(5deg) scale(1.5)");
+	  },
+	  stop: function(event, ui){
+		  ui.helper.css("transform", "rotate(0deg) scale(1)")
+	  },
+	  zIndex: 100
+  });
+	$("#trashcan").droppable({
+		activeClass: "highlight",
+		drop: function(event, ui){
+			ui.helper.hide("explode");
+			$(this).attr("src","images/trashcan-full-icon.png");
+		}
+	});
+}); // end ready
+</script>
+</head>
+<body>
+  <div class="content">
+    <h1>Trash It!</h1>
+    <div id="photos">
+		  <img src="images/slide1_h.jpg" alt="">
+		  <img src="images/slide2_h.jpg" alt="">
+		  <img src="images/slide3_h.jpg" alt="">
+		  <img src="images/slide4_h.jpg" alt="">
+		  <img src="images/slide5_h.jpg" alt="">
+		  <img src="images/slide6_h.jpg" alt="">
+		</div>
+		<img src="images/trashcan-empty-icon.png" alt="" id="trashcan">
+	</div>
+</body>
+</html>
